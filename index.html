@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keep Service Alive</title>
+</head>
+<body>
+    <script>
+        // Function to make an HTTP request to your service
+        function keepServiceAlive() {
+            fetch('https://smartattendweb.onrender.com')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        // Make the initial request
+        keepServiceAlive();
+
+        // Make a request every 5 minutes (300,000 milliseconds)
+        setInterval(keepServiceAlive, 300000);
+    </script>
+</body>
+</html>
